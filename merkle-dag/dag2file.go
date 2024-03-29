@@ -5,12 +5,12 @@ import (
 )
 
 // Hash2File 根据哈希值和路径从KVStore中检索文件内容。
-// 注意：这个函数是一个简化的示例，没有处理Merkle DAG的递归检索逻辑。
+
 func Hash2File(store KVStore, hash []byte, path string, hp HashPool) []byte {
 	// 假设hash是文件内容的直接键
 	data, err := store.Get(hash)
 	if err != nil {
-		// 这里可以添加更详细的错误处理
+
 		return nil
 	}
 
@@ -18,12 +18,10 @@ func Hash2File(store KVStore, hash []byte, path string, hp HashPool) []byte {
 	return data
 }
 
-// 以下是可能的错误处理示例
 var (
 	ErrNotFound = errors.New("not found")
 )
 
-// 更健壮的Hash2File实现可能包括错误处理和更复杂的Merkle DAG遍历
 func Hash2FileRobust(store KVStore, hash []byte, path string, hp HashPool) ([]byte, error) {
 	// 这里应该添加逻辑来解析Merkle DAG结构，根据hash递归检索节点内容
 	// ...
